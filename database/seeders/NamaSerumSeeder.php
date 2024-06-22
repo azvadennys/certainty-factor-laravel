@@ -41,6 +41,6 @@ class NamaSerumSeeder extends Seeder
             ['kode_serum' => 'S023', 'nama_serum' => 'Holygral Multipetide Youth Elixir'],
         ];
 
-        DB::table('nama_serum')->insert($serums);
+        DB::table('serum')->insert($serums);
     }
 }

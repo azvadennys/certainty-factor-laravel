@@ -11,7 +11,7 @@ class TableGejala extends Migration
         Schema::create('gejala', function (Blueprint $table) {
             $table->string('kode_gejala',6)->primary();
             $table->string('nama_gejala');
-            $table->text('deskripsi')->nullable();
+            $table->text('deskripsi_gejala')->nullable();
             $table->string('foto_gejala')->nullable();
             $table->timestamps();
         });
