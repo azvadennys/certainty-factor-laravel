@@ -14,6 +14,7 @@
     <link href="{{ asset('css/magnific-popup.css') }}" type="text/css" rel="stylesheet" media="all" />
     <link href="{{ asset('css/font.css') }}" rel="stylesheet" type="text/css" media="all">
     <link href="{{ asset('css/fontello.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('css/paging.css') }}" type="text/css" media="screen">
     <!-- Bootstrap 3.3.5 -->
@@ -42,6 +43,7 @@
     <script src="{{ asset('aset/Flot/jquery.flot.categories.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('aset/app.js') }}"></script>
+
 </head>
 
 <body id="pakarayam" class="hold-transition skin-purple-light sidebar-mini">
@@ -57,39 +59,38 @@
             </a>
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
+                <div class="container-fluid d-flex justify-content-between align-items-center">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
 
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        @auth
-                            <li class="dropdown user user-menu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="{{ asset('gambar/admin/admin.png') }}" class="user-image" alt="User Image">
-                                    {{ ucfirst(auth()->user()->username) }}
-                                    <span class="hidden-xs">{{ auth()->user()->name }}</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- User image -->
-                                    <li class="user-header">
-                                        <img src="{{ asset('gambar/admin/admin.png') }}" class="img-circle"
-                                            alt="User Image">
-                                        <p>
-                                            Login sebagai {{ ucfirst(auth()->user()->username) }}
-                                            <small>Pakar dari Chirexs 1.0</small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a class="btn btn-default btn-flat {{ Request::is('tentang') ? 'active' : '' }}"
-                                                href="{{ route('tentang.index') }}"><i class="fa fa-info-circle"></i>
-                                                <span>Tentang</span></a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                    <!-- Right side menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            @auth
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="{{ asset('gambar/admin/admin.png') }}" class="rounded-circle"
+                                            alt="User Image" style="width: 30px; height: 30px;">
+                                        {{ ucfirst(auth()->user()->username) }}
+                                        <span class="d-none d-sm-inline">{{ auth()->user()->name }}</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li class="text-center px-3 py-2">
+                                            <img src="{{ asset('gambar/admin/admin.png') }}" class="img-circle mb-2"
+                                                alt="User Image" style="width: 60px; height: 60px;">
+                                            <p class="mb-0">
+                                                Login sebagai {{ ucfirst(auth()->user()->username) }}
+                                                <small class="d-block">Pakar dari Chirexs 1.0</small>
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 <i class="fa fa-sign-out"></i> <span>LogOut</span>
                                             </a>
@@ -97,26 +98,24 @@
                                                 style="display: none;">
                                                 @csrf
                                             </form>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endauth
-                        @guest
-                            {{-- <li><a class="{{ Request::is('bantuan') ? 'active' : '' }}" id="bantu"
-                                    href="{{ route('bantuan.index') }}" data-toggle="tooltip" data-placement="bottom"
-                                    data-delay='{"show":"300", "hide":"500"}'
-                                    title="Silahkan klik link berikut, jika anda masih kurang paham tentang penggunaan aplikasi ini !"><i
-                                        class="fa fa-question-circle"></i> <span>Bantuan</span></a></li> --}}
-                            <li class="dropdown messages-menu">
-                                <a class="{{ Request::is('login') ? 'active' : '' }}" href="{{ route('login') }}"><i
-                                        class="fa fa-sign-in"></i>
-                                    <span>Login</span></a>
-                            </li>
-                        @endguest
-                    </ul>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                            @endauth
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link {{ Request::is('login') ? 'active' : '' }}"
+                                        href="{{ route('login') }}">
+                                        <i class="fa fa-sign-in"></i> <span>Login</span>
+                                    </a>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
             </nav>
+
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
@@ -124,7 +123,7 @@
             <section class="sidebar">
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    <li class="header">Menu</li>
+                    <li class="header"></li>
                     <!-- Optionally, you can add icons to the links -->
                     @include('menu')
                 </ul>
@@ -157,5 +156,15 @@
         <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     </div><!-- ./wrapper -->
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+</script>
+
+
+
+3
 
 </html>
