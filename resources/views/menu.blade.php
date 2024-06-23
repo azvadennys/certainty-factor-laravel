@@ -6,8 +6,8 @@
     <li><a class="{{ Request::is('admin') ? 'active' : '' }}" href="{{ url('admin') }}"><i class="fa fa-user"></i>
             <span>Admin</span></a></li>
     <div class="container"></div>
-    <li><a class="{{ Request::is('penyakit') ? 'active' : '' }}" href="{{ url('penyakit') }}"><i class="fa fa-bug"></i>
-            <span>Penyakit</span></a></li>
+    <li><a class="{{ Request::is('serums') ? 'active' : '' }}" href="{{ url('serums') }}"><i class="fa fa-bug"></i>
+            <span>Serum</span></a></li>
     <div class="container"></div>
     <li><a class="{{ Request::is('gejala') ? 'active' : '' }}" href="{{ url('gejala') }}"><i class="fa fa-eyedropper"></i>
             <span>Gejala</span></a></li>
