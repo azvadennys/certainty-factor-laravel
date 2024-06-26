@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Serum;
 
 use Illuminate\Support\Facades\Storage;
+
 class SerumController extends Controller
 {
     /**
@@ -24,9 +25,26 @@ class SerumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function generateSerumCode($lastCode)
+    {
+        $number = (int)substr($lastCode, 1);
+        $newNumber = $number + 1;
+        return 'S' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+    }
+
     public function create()
     {
-        return view('serums.create');
+        // Fungsi untuk menghasilkan kode_serum otomatis
+
+
+        // Ambil kode_serum terakhir dari database
+        $lastSerum = Serum::orderBy('kode_serum', 'desc')->first();
+        $lastCode = $lastSerum ? $lastSerum->kode_serum : 'S000';
+        $kode_serum = SerumController::generateSerumCode($lastCode);
+        $data = [
+            'kode_serum' => $kode_serum,
+        ];
+        return view('serums.create', $data);
     }
 
     /**
@@ -38,16 +56,31 @@ class SerumController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_serum' => 'required|unique:serums|max:6',
+            'kode_serum' => 'required|unique:serum|max:6',
             'nama_serum' => 'required',
             'deskripsi' => 'nullable',
-            'foto_serum' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'foto_serum' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
-        $serum = new Serum($request->all());
+        // dd($request);
+        // Buat objek serum baru
+        $serum = new Serum();
+        $serum->kode_serum = $request->kode_serum;
+        $serum->nama_serum = $request->nama_serum;
+        $serum->deskripsi = $request->deskripsi;
 
         if ($request->hasFile('foto_serum')) {
-            $serum->foto_serum = $request->file('foto_serum')->store('serum_images', 'public');
+            $file = $request->file('foto_serum');
+            $filename = $request->kode_serum . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+            // Pastikan direktori penyimpanan ada
+            $directoryPath = public_path('images/serums');
+            if (!file_exists($directoryPath)) {
+                mkdir($directoryPath, 0777, true);
+            }
+
+            // Pindahkan file ke direktori publik
+            $file->move($directoryPath, $filename);
+            $serum->foto_serum = 'images/serums/' . $filename;
         }
 
         $serum->save();
@@ -75,7 +108,7 @@ class SerumController extends Controller
      */
     public function edit($id)
     {
-        $serum = Serum::findOrFail($kode_serum);
+        $serum = Serum::findOrFail($id);
         return view('serums.edit', compact('serum'));
     }
 
@@ -86,7 +119,7 @@ class SerumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $kode_serum)
     {
         $request->validate([
             'nama_serum' => 'required',

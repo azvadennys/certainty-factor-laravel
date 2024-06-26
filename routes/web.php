@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CFController;
 use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SerumController;
@@ -29,5 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('serums', SerumController::class);
 });
+Route::get('/cf-form', [CFController::class, 'showForm'])->name('cf.form');
+Route::post('/calculate-cf', [CFController::class, 'calculateCF'])->name('calculate.cf');
 
 require __DIR__ . '/auth.php';
