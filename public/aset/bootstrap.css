@@ -4497,7 +4497,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
     .navbar-nav>li>a {
         padding-top: 15px;
         padding-bottom: 15px;
-        transform: translateX(200%);
+        /* transform: translateX(200%); */
         right: 0;
     }
 }

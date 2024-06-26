@@ -5,6 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Certainty Factor</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" href="{{ asset('gambar/admin/favicon.png') }}">
@@ -53,65 +54,67 @@
             <!-- Logo -->
             <a href="{{ url('/') }}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b><i class="fa fa-contao" aria-hidden="true"></i>XS</b></span>
+                <span class="logo-mini"><b><i class="fa fa-contao" aria-hidden="true"></i>CF</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b><i class="fa fa-contao" aria-hidden="true"></i>hirexs 1.0</b></span>
+                <span class="logo-lg"><b><i class="fa fa-contao" aria-hidden="true"></i>Certainty Factor</b></span>
             </a>
             <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
+            <nav class="navbar navbar-expand-lg " role="navigation">
                 <div class="container-fluid d-flex justify-content-between align-items-center">
                     <!-- Sidebar toggle button-->
-                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
+                    <div class="col-6">
+                        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <!-- Right side menu -->
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav ml-auto">
+                                @auth
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="{{ asset('gambar/admin/admin.png') }}" class="rounded-circle"
+                                                alt="User Image" style="width: 30px; height: 30px;">
+                                            {{ ucfirst(auth()->user()->username) }}
+                                            <span class="d-none d-sm-inline">{{ auth()->user()->name }}</span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                            <li class="text-center px-3 py-2">
+                                                <img src="{{ asset('gambar/admin/admin.png') }}" class="img-circle mb-2"
+                                                    alt="User Image" style="width: 60px; height: 60px;">
+                                                <p class="mb-0">
+                                                    Login sebagai {{ ucfirst(auth()->user()->username) }}
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    <i class="fa fa-sign-out"></i> <span>LogOut</span>
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
 
-                    <!-- Right side menu -->
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-                            @auth
-                                <li class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" id="userDropdown" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="{{ asset('gambar/admin/admin.png') }}" class="rounded-circle"
-                                            alt="User Image" style="width: 30px; height: 30px;">
-                                        {{ ucfirst(auth()->user()->username) }}
-                                        <span class="d-none d-sm-inline">{{ auth()->user()->name }}</span>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                        <li class="text-center px-3 py-2">
-                                            <img src="{{ asset('gambar/admin/admin.png') }}" class="img-circle mb-2"
-                                                alt="User Image" style="width: 60px; height: 60px;">
-                                            <p class="mb-0">
-                                                Login sebagai {{ ucfirst(auth()->user()->username) }}
-                                                <small class="d-block">Pakar dari Chirexs 1.0</small>
-                                            </p>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <i class="fa fa-sign-out"></i> <span>LogOut</span>
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
-                                                @csrf
-                                            </form>
-                                        </li>
-                                    </ul>
-
-                                </li>
-                            @endauth
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link {{ Request::is('login') ? 'active' : '' }}"
-                                        href="{{ route('login') }}">
-                                        <i class="fa fa-sign-in"></i> <span>Login</span>
-                                    </a>
-                                </li>
-                            @endguest
-                        </ul>
+                                    </li>
+                                @endauth
+                                @guest
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ Request::is('login') ? 'active' : '' }}"
+                                            href="{{ route('login') }}">
+                                            <i class="fa fa-sign-in"></i> <span>Login</span>
+                                        </a>
+                                    </li>
+                                @endguest
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -180,9 +183,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
 </script>
-
-
-
-3
-
 </html>
