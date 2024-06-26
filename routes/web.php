@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('serums', SerumController::class);
 });
-Route::get('/cf-form', [CFController::class, 'showForm'])->name('cf.form');
-Route::post('/calculate-cf', [CFController::class, 'calculateCF'])->name('calculate.cf');
+Route::get('/diagnosa', [CFController::class, 'showForm'])->name('diagnosa');
+Route::post('/diagnosa', [CFController::class, 'calculateCF'])->name('calculate.cf');
 
 require __DIR__ . '/auth.php';
