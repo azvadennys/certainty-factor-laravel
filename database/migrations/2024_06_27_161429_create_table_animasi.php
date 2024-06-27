@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama')->nullable();
             $table->string('video_animasi')->nullable();
+            $table->text('narator')->nullable();
             $table->text('id_serum')->nullable();
             $table->timestamps();
         });
