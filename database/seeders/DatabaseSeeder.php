@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
 
         $users = [
             ['name' => 'Administrator', 'email' => 'admin@gmail.com', 'role' => 'admin', 'password' => Hash::make('123')],
-            ['name' => 'Pengguna', 'email' => 'user@gmail.com', 'role' => 'user', 'password' => Hash::make('123')],];
+            ['name' => 'Pengguna', 'email' => 'user@gmail.com', 'role' => 'user', 'password' => Hash::make('123')],
+        ];
         DB::table('users')->insert($users);
         $this->call(GejalaSeeder::class);
         $this->call(NamaSerumSeeder::class);

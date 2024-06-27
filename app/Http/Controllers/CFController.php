@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Gejala;
 use App\Models\Pengetahuan;
+use App\Models\Riwayat;
 use App\Models\Serum;
 
 class CFController extends Controller
@@ -61,6 +62,18 @@ class CFController extends Controller
                 return $b['persentase'] <=> $a['persentase'];
             });
         }
+
+
+        // Ubah iterasiCF menjadi format JSON untuk penyimpanan
+        $cfResultsJson = json_encode($iterasiCF);
+        $serumResultsJson = json_encode($serumResults);
+
+        // Simpan ke dalam tabel riwayat
+        $riwayat = new Riwayat();
+        $riwayat->id_users = auth()->user()->id; // Sesuaikan dengan ID pengguna yang sesuai
+        $riwayat->cfResults = $cfResultsJson;
+        $riwayat->serumResults = $serumResultsJson;
+        $riwayat->save();
 
         return view('diagnosa.cf_result', compact('cfResults', 'serumResults'));
     }
