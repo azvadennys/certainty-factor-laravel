@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('riwayat', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_users');
+            $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
             $table->text('cfResults')->nullable();
             $table->text('serumResults')->nullable();

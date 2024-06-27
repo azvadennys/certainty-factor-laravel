@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('animasi', function (Blueprint $table) {
             $table->id();
+            $table->string('nama')->nullable();
             $table->string('video_animasi')->nullable();
             $table->text('id_serum')->nullable();
             $table->timestamps();
