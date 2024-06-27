@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $users = [
-            ['name' => 'Administrator', 'email' => 'admin@gmail.com', 'password' => Hash::make('123')],
+            ['name' => 'Administrator', 'email' => 'admin@gmail.com','role' => 'admin', 'password' => Hash::make('123')],
         ];
         DB::table('users')->insert($users);
         $this->call(GejalaSeeder::class);
