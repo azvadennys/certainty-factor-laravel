@@ -9,4 +9,11 @@ class Riwayat extends Model
 {
     use HasFactory;
     protected $table = 'riwayat';
+
+    protected $with = ['user'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_users', 'id');
+    }
 }

@@ -65,7 +65,7 @@ class CFController extends Controller
 
 
         // Ubah iterasiCF menjadi format JSON untuk penyimpanan
-        $cfResultsJson = json_encode($iterasiCF);
+        $cfResultsJson = json_encode($cfResults);
         $serumResultsJson = json_encode($serumResults);
 
         // Simpan ke dalam tabel riwayat
@@ -75,6 +75,10 @@ class CFController extends Controller
         $riwayat->serumResults = $serumResultsJson;
         $riwayat->save();
 
-        return view('diagnosa.cf_result', compact('cfResults', 'serumResults'));
+        // Ambil ID dari data yang baru disimpan
+        $riwayatId = $riwayat->id;
+
+        // Redirect ke halaman riwayat.show dengan menyertakan ID riwayat
+        return redirect()->route('riwayat.show', $riwayatId)->with('success', 'Data riwayat berhasil disimpan.');
     }
 }

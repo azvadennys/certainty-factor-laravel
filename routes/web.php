@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SerumController;
 use App\Http\Controllers\PengetahuanController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,5 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::post('/diagnosa', [CFController::class, 'calculateCF'])->name('calculate.cf');
+
+    Route::get('/riwayat', [RiwayatController::class,'index'])->name('riwayat.index');
+    Route::get('/riwayat/{id}', [RiwayatController::class,'show'])->name('riwayat.show');
+    Route::delete('/riwayat/{id}', [RiwayatController::class,'destroy'])->name('riwayat.destroy');
 });
 require __DIR__ . '/auth.php';
