@@ -12,13 +12,15 @@ use Illuminate\View\View;
 
 class LandingPage extends Controller
 {
-    public function index(){
-$data =[
-    'total_gejala' => Gejala::all()->count(),
-    'total_serum' => Serum::all()->count(),
-    'total_pengetahuan' => Pengetahuan::all()->count(),
-    'total_pengguna' => User::all()->count(),
-];
-        return view('page.index',$data);
+    public function index()
+    {
+        $data = [
+            'total_gejala' => Gejala::all()->count(),
+            'total_serum' => Serum::all()->count(),
+            'total_pengetahuan' => Pengetahuan::all()->count(),
+            'total_pengguna' => User::all()->count(),
+        ];
+        return view('page.index', $data);
     }
+
 }

@@ -3,13 +3,13 @@
 <div class="container"></div>
 
 @auth
-    <li><a class="{{ Request::is('admin') ? 'active' : '' }}" href="{{ url('admin') }}"><i class="fa fa-user"></i>
-            <span>Admin</span></a></li>
+    <li><a class="{{ Request::is('users') ? 'active' : '' }}" href="{{ url('users') }}"><i class="fa fa-user"></i>
+            <span>Pengguna</span></a></li>
     <div class="container"></div>
     <li><a class="{{ Request::is('serums') ? 'active' : '' }}" href="{{ url('serums') }}"><i class="fa fa-bug"></i>
             <span>Serum</span></a></li>
     <div class="container"></div>
-    <li><a class="{{ Request::is('gejala') ? 'active' : '' }}" href="{{ url('gejala') }}"><i class="fa fa-eyedropper"></i>
+    <li><a class="{{ Request::is('gejalas') ? 'active' : '' }}" href="{{ url('gejalas') }}"><i class="fa fa-eyedropper"></i>
             <span>Gejala</span></a></li>
     <div class="container"></div>
     <li><a class="{{ Request::is('pengetahuan') ? 'active' : '' }}" href="{{ url('pengetahuan') }}"><i

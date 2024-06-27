@@ -24,7 +24,7 @@
                     <p>Total Serum</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bug"></i>
+                    <i class="ion ion-beaker"></i>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             <div class="small-box bg-red">
                 <div class="inner">
                     <h3>{{ $total_pengguna }}</h3>
-                    <p>Total Admin Pakar</p>
+                    <p>Total Pengguna</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -78,8 +78,8 @@
                 {{-- <img src="aset/banner/icon2.png" alt=""> --}}
 
                 <h2>Sahabat Kecantikan</h2>
-                <p>Sistem Pakar ini terus di sesuaikan perhitungan diagnosanya, supaya akurasi terhadap penyakit yang
-                    diderita lebih sesuai dan menjadi acuan peternak.</p>
+                <p>Sistem Pakar ini terus di sesuaikan perhitungan diagnosanya, supaya akurasi terhadap gejala yang
+                    diderita lebih sesuai dan menjadi acuan pengguna.</p>
             </div>
         </div>
         <div class="col-sm-4 text-center padding wow fadeIn animated" data-wow-duration="1000ms" data-wow-delay="900ms"

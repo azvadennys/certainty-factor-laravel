@@ -56,6 +56,10 @@ class CFController extends Controller
                 'persentase' => $cf_serum,
                 'iterasi_cf' => $iterasiCF,
             ];
+            // Urutkan array $serumResults berdasarkan persentase dari terbesar ke terkecil
+            usort($serumResults, function ($a, $b) {
+                return $b['persentase'] <=> $a['persentase'];
+            });
         }
 
         return view('diagnosa.cf_result', compact('cfResults', 'serumResults'));

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Serum;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class SerumController extends Controller
@@ -59,9 +59,9 @@ class SerumController extends Controller
             'kode_serum' => 'required|unique:serum|max:6',
             'nama_serum' => 'required',
             'deskripsi' => 'nullable',
-            'foto_serum' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
+            'foto_serum' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Adjust max size as per your requirements
         ]);
-        // dd($request);
+
         // Buat objek serum baru
         $serum = new Serum();
         $serum->kode_serum = $request->kode_serum;
@@ -78,13 +78,12 @@ class SerumController extends Controller
                 mkdir($directoryPath, 0777, true);
             }
 
-            // Pindahkan file ke direktori publik
+            // Pindahkan file ke direktori publik menggunakan move_uploaded_file
             $file->move($directoryPath, $filename);
             $serum->foto_serum = 'images/serums/' . $filename;
         }
 
         $serum->save();
-
         return redirect()->route('serums.index')->with('success', 'Serum created successfully.');
     }
 
@@ -94,7 +93,7 @@ class SerumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($kode_serum)
     {
         $serum = Serum::findOrFail($kode_serum);
         return view('serums.show', compact('serum'));
@@ -123,21 +122,34 @@ class SerumController extends Controller
     {
         $request->validate([
             'nama_serum' => 'required',
-            'deskripsi' => 'nullable',
-            'foto_serum' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi' => 'required',
         ]);
 
         $serum = Serum::findOrFail($kode_serum);
 
         if ($request->hasFile('foto_serum')) {
             // Delete old image if exists
-            if ($serum->foto_serum && Storage::disk('public')->exists($serum->foto_serum)) {
-                Storage::disk('public')->delete($serum->foto_serum);
+            if ($serum->foto_serum && File::exists(public_path($serum->foto_serum))) {
+                File::delete(public_path($serum->foto_serum));
             }
-            $serum->foto_serum = $request->file('foto_serum')->store('serum_images', 'public');
+            $file = $request->file('foto_serum');
+            $filename = $request->kode_serum . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+            // Pastikan direktori penyimpanan ada
+            $directoryPath = public_path('images/serums');
+            if (!file_exists($directoryPath)) {
+                mkdir($directoryPath, 0777, true);
+            }
+
+            // Pindahkan file ke direktori publik menggunakan move_uploaded_file
+            $file->move($directoryPath, $filename);
+            $serum->foto_serum = 'images/serums/' . $filename;
         }
 
-        $serum->update($request->only('nama_serum', 'deskripsi'));
+        // Update other fields
+        $serum->nama_serum = $request->nama_serum;
+        $serum->deskripsi = $request->deskripsi;
+        $serum->save();
 
         return redirect()->route('serums.index')->with('success', 'Serum updated successfully.');
     }
@@ -148,17 +160,17 @@ class SerumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kode_serum)
     {
         $serum = Serum::findOrFail($kode_serum);
 
         // Delete image if exists
-        if ($serum->foto_serum && Storage::disk('public')->exists($serum->foto_serum)) {
-            Storage::disk('public')->delete($serum->foto_serum);
+        if ($serum->foto_serum && File::exists(public_path($serum->foto_serum))) {
+            File::delete(public_path($serum->foto_serum));
         }
 
+        // Delete the serum record
         $serum->delete();
-
         return redirect()->route('serums.index')->with('success', 'Serum deleted successfully.');
     }
 }

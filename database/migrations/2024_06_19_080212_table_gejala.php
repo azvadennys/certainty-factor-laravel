@@ -9,7 +9,7 @@ class TableGejala extends Migration
     public function up()
     {
         Schema::create('gejala', function (Blueprint $table) {
-            $table->string('kode_gejala',6)->primary();
+            $table->string('kode_gejala', 6)->primary();
             $table->string('nama_gejala');
             $table->text('deskripsi_gejala')->nullable();
             $table->string('foto_gejala')->nullable();

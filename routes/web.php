@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\CFController;
+use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\LandingPage;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SerumController;
+use App\Http\Controllers\PengetahuanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +31,18 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('serums', SerumController::class);
+    Route::resource('serums', SerumController::class)->except(['show']);
+    Route::resource('gejalas', GejalaController::class)->except(['show']);
+    Route::resource('users', UserController::class)->except(['show']);
+
+    Route::get('/pengetahuan/select2Serum', [PengetahuanController::class, 'select2Serum'])->name('serums.select2');
+    Route::get('/pengetahuan/select2Gejala', [PengetahuanController::class, 'select2Gejala'])->name('gejalas.select2');
+    Route::get('/pengetahuan', [PengetahuanController::class, 'index'])->name('pengetahuan.index');
+    Route::get('/pengetahuan/create', [PengetahuanController::class, 'create'])->name('pengetahuan.create');
+    Route::post('/pengetahuan', [PengetahuanController::class, 'store'])->name('pengetahuan.store');
+    Route::get('/pengetahuan/{id}/edit', [PengetahuanController::class, 'edit'])->name('pengetahuan.edit');
+    Route::put('/pengetahuan/{id}', [PengetahuanController::class, 'update'])->name('pengetahuan.update');
+    Route::delete('/pengetahuan/{id}', [PengetahuanController::class, 'destroy'])->name('pengetahuan.destroy');
 });
 Route::get('/diagnosa', [CFController::class, 'showForm'])->name('diagnosa');
 Route::post('/diagnosa', [CFController::class, 'calculateCF'])->name('calculate.cf');

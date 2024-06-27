@@ -1,28 +1,102 @@
 @extends('index')
-
+@push('custome_head')
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+@endpush
 @section('content')
     <div class="container mt-5">
         <h1 class="mb-4">Certainty Factor Calculation</h1>
         <form method="post" action="{{ route('calculate.cf') }}">
             @csrf
-            @foreach ($gejala as $item)
-                <div class="form-group row">
-                    <label for="gejala_{{ $item->kode_gejala }}"
-                        class="col-sm-2 col-form-label">({{ $item->kode_gejala }}){{ $item->nama_gejala }}:</label>
-                    <div class="col-sm-10">
-                        <select id="gejala_{{ $item->kode_gejala }}" name="gejala[{{ $item->kode_gejala }}]"
-                            class="form-control">
-                            <option value="0">0 (Tidak Ada)</option>
-                            <option value="0.2">0.2 (Tidak Tahu)</option>
-                            <option value="0.4">0.4 (Mungkin)</option>
-                            <option value="0.6">0.6 (Kemungkinan Besar)</option>
-                            <option value="0.8">0.8 (Hampir Pasti)</option>
-                            <option value="1">1 (Pasti)</option>
-                        </select>
-                    </div>
-                </div>
-            @endforeach
-            <button type="submit" class="btn btn-primary">Hitung CF</button>
+            <div class="table-responsive">
+                <table class="table table-bordered " style="border:#605ca8">
+                    <thead style="--bs-table-bg: #605ca8; --bs-table-color:white;" class="text-white">
+                        <tr>
+                            <th class="text-center">Kode Gejala</th>
+                            <th>Nama Gejala</th>
+                            <th>Nilai CF</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($gejala as $item)
+                            <tr>
+                                <td class="text-center"><b>{{ $item['kode_gejala'] }}</b></td>
+                                <td>{{ ucwords($item['nama_gejala']) }}</td>
+                                <td>
+                                    <select id="gejala_{{ $item['kode_gejala'] }}" name="gejala[{{ $item['kode_gejala'] }}]"
+                                        class="form-control">
+                                        <option value="0">0 (Tidak Ada)</option>
+                                        <option value="0.2">0.2 (Tidak Tahu)</option>
+                                        <option value="0.4">0.4 (Mungkin)</option>
+                                        <option value="0.6">0.6 (Kemungkinan Besar)</option>
+                                        <option value="0.8">0.8 (Hampir Pasti)</option>
+                                        <option value="1">1 (Pasti)</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-info" data-toggle="modal"
+                                        data-target="#detailModal" data-kode="{{ $item['kode_gejala'] }}"
+                                        data-nama="{{ ucwords($item['nama_gejala']) }}"
+                                        data-deskripsi="{{ $item['deskripsi_gejala'] }}"
+                                        data-foto="{{ asset($item['foto_gejala']) }}">
+                                        Detail
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Hitung CF</button>
         </form>
     </div>
+    <style>
+        .modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 1rem);
+        }
+    </style>
+    <!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Detail Gejala</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Kode Gejala:</strong> <span id="modalKodeGejala"></span></p>
+                    <p><strong>Nama Gejala:</strong> <span id="modalNamaGejala"></span></p>
+                    <p><strong>Deskripsi Gejala:</strong> <span id="modalDeskripsiGejala"></span></p>
+                    <p><strong>Foto Gejala:</strong></p>
+                    <img id="modalFotoGejala" src="" alt="Foto Gejala" class="img-fluid">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+@push('custome_js')
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        $('#detailModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var kode = button.data('kode');
+            var nama = button.data('nama');
+            var deskripsi = button.data('deskripsi');
+            var foto = button.data('foto');
+            var modal = $(this);
+            modal.find('#modalKodeGejala').text(kode);
+            modal.find('#modalNamaGejala').text(nama);
+            modal.find('#modalDeskripsiGejala').text(deskripsi);
+            modal.find('#modalFotoGejala').attr('src', foto);
+        });
+    </script>
+@endpush

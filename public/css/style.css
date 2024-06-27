@@ -10,9 +10,9 @@ select {
 }
 
 select option {
-  margin: 40px;
+  /* margin: 40px;
   background: #31708f;
-  color: #000;
+  color: #000; */
   border: 1px solid #ddd;
 }
 
@@ -24,28 +24,28 @@ select option[data-id="0"]{ /* data-id not val */
 select option[data-id="1"]{ /* data-id not val */
     color: #cc66ff;
 }
-select option[data-id="2"] {   
+select option[data-id="2"] {
     color: #019AFF;
 }
-select option[data-id="3"] {   
+select option[data-id="3"] {
     color: #00CBFD;
 }
-select option[data-id="4"] {   
+select option[data-id="4"] {
     color: #00FEFE;
 }
-select option[data-id="5"] {   
+select option[data-id="5"] {
     color: #A4F804;
 }
-select option[data-id="6"] {   
+select option[data-id="6"] {
     color: #FFFC00;
 }
-select option[data-id="7"] {   
+select option[data-id="7"] {
     color: #FDCD01;
 }
-select option[data-id="8"] {   
+select option[data-id="8"] {
     color: #FD9A01;
 }
-select option[data-id="9"] {   
+select option[data-id="9"] {
     color: #FB6700;
 }
 
@@ -58,7 +58,7 @@ select:disabled {
 }
 
 tbody.pilihkondisi td.opsi{
-    text-align:center; 
+    text-align:center;
     vertical-align:middle;
 }
 
@@ -69,7 +69,7 @@ tbody.pilihkondisi th{
 }
 
 tbody.pilihkondisi th{
-    text-align:center; 
+    text-align:center;
     vertical-align:middle;
     background: #ecf0f1;
 
@@ -80,7 +80,7 @@ span.hasil{
 }
 
 table.diagnosa th{
-    background-color: #9b59b6;   
+    background-color: #9b59b6;
     color: #fff;
 }
 
@@ -97,7 +97,7 @@ table.table-bordered.diagnosa td {
 
 /*Konsultasi*/
 table.konsultasi th{
-    background-color: #95afc0;   
+    background-color: #95afc0;
     color: #fff;
 }
 
@@ -114,7 +114,7 @@ table.table-bordered.konsultasi td {
 
 /*Riwayat*/
 table.riwayat th{
-    background-color: #22a6b3;   
+    background-color: #22a6b3;
     color: #fff;
 }
 
@@ -146,7 +146,7 @@ div.paging {
 }
 
 img.post{
-    
+
 }
 
 .well {

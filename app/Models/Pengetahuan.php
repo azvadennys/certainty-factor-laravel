@@ -8,8 +8,6 @@ class Pengetahuan extends Model
 {
     use HasFactory;
     protected $table = 'pengetahuan';
-    protected $primaryKey = null;
-    public $incrementing = false;
     public $timestamps = false;
 
     protected $fillable = ['kode_serum', 'kode_gejala', 'nilai_cf'];
