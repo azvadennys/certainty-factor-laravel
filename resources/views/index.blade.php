@@ -106,7 +106,13 @@
                                     </li>
                                 @endauth
                                 @guest
-                                    <li class="nav-item">
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link {{ Request::is('register') ? 'active' : '' }}"
+                                        href="{{ route('register') }}">
+                                        <i class="fa fa-sign-up"></i> <span>Registrasi</span>
+                                    </a>
+                                </li>
+                                    <li class="nav-item mx-2">
                                         <a class="nav-link {{ Request::is('login') ? 'active' : '' }}"
                                             href="{{ route('login') }}">
                                             <i class="fa fa-sign-in"></i> <span>Login</span>

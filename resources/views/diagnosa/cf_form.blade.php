@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mt-5">
         <h1 class="mb-4">Certainty Factor Calculation</h1>
-        <form method="post" action="{{ route('calculate.cf') }}">
+        <form method="post" action="{{ route('calculate.cf') }}" id="cfForm">
             @csrf
             <div class="table-responsive">
                 <table class="table table-bordered " style="border:#605ca8">
@@ -97,6 +97,23 @@
             modal.find('#modalNamaGejala').text(nama);
             modal.find('#modalDeskripsiGejala').text(deskripsi);
             modal.find('#modalFotoGejala').attr('src', foto);
+        });
+
+        // Form validation
+        document.getElementById('cfForm').addEventListener('submit', function(event) {
+            var cfSelects = document.querySelectorAll('.cf-select');
+            var validCount = 0;
+
+            cfSelects.forEach(function(select) {
+                if (parseFloat(select.value) > 0) {
+                    validCount++;
+                }
+            });
+
+            if (validCount < 3) {
+                event.preventDefault();
+                alert('Silakan pilih setidaknya 3 gejala dengan nilai CF lebih dari 0.');
+            }
         });
     </script>
 @endpush

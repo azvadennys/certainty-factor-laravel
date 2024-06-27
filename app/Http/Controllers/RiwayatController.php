@@ -41,7 +41,7 @@ class RiwayatController extends Controller
     public function destroy($id)
     {
 
-        $riwayats = Riwayat::where('id', $id)->delete();
+        Riwayat::where('id', $id)->delete();
 
         return redirect()->to(route('riwayat.index'))->with('success', 'Berhasil Menghapus Riwayat');
     }

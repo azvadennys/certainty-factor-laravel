@@ -1,64 +1,85 @@
 @extends('index')
 @section('content')
-    <div class='row'>
-        <div class='col-lg-3 col-xs-6'>
-            <!-- small box -->
-            <div class='small-box bg-aqua'>
-                <div class='inner'>
-                    <h3>{{ $total_gejala }}</h3>
-                    <p>Total Gejala</p>
-                </div>
-                <div class='icon'>
-                    <i class='ion ion-thermometer'></i>
-                </div>
-            </div>
-        </div>
-        <!-- ./col -->
-
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>{{ $total_serum }}</h3>
-
-                    <p>Total Serum</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-beaker"></i>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="card shadow-lg border-0 rounded-lg">
+                    <div class="card-body p-5">
+                        <h1 class="display-4 text-primary mb-4">Selamat Datang!</h1>
+                        <h2 class="h4 mb-3 text-dark">Sistem Pakar Pemilihan Serum Wajah Somethinc</h2>
+                        <p class="lead text-muted">Temukan rekomendasi serum wajah terbaik untuk kulit Anda dengan teknologi
+                            sistem pakar yang canggih. Mulailah dengan memilih gejala yang Anda alami dan kami akan membantu
+                            Anda menemukan serum yang paling sesuai.</p>
+                        <a href="{{ route('diagnosa') }}" class="btn btn-primary btn-lg mt-4">Mulai Diagnosa</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- ./col -->
-
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-                <div class="inner">
-                    <h3>{{ $total_pengetahuan }}</h3>
-                    <p>Total Pengetahuan</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-erlenmeyer-flask"></i>
-                </div>
-            </div>
-        </div>
-        <!-- ./col -->
-
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-red">
-                <div class="inner">
-                    <h3>{{ $total_pengguna }}</h3>
-                    <p>Total Pengguna</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-person-add"></i>
-                </div>
-            </div>
-        </div>
-        <!-- ./col -->
     </div>
-    <br>
+    @auth
+
+        @if (auth()->user()->role == 'admin')
+            <div class='row'>
+                <div class='col-lg-3 col-xs-6'>
+                    <!-- small box -->
+                    <div class='small-box bg-aqua'>
+                        <div class='inner'>
+                            <h3>{{ $total_gejala }}</h3>
+                            <p>Total Gejala</p>
+                        </div>
+                        <div class='icon'>
+                            <i class='ion ion-thermometer'></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ $total_serum }}</h3>
+
+                            <p>Total Serum</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-beaker"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{ $total_pengetahuan }}</h3>
+                            <p>Total Pengetahuan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-erlenmeyer-flask"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>{{ $total_pengguna }}</h3>
+                            <p>Total Pengguna</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <br>
+        @endif
+    @endauth
     <div class="row">
         <div class="col-sm-4 text-center padding wow fadeIn animated" data-wow-duration="1000ms" data-wow-delay="300ms"
             style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeIn;">
