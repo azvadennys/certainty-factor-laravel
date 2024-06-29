@@ -29,7 +29,7 @@
                                 <td>{{ ucwords($item['nama_gejala']) }}</td>
                                 <td>
                                     <select id="gejala_{{ $item['kode_gejala'] }}" name="gejala[{{ $item['kode_gejala'] }}]"
-                                        class="form-control">
+                                        class="form-control cf-select">
                                         <option value="0">0 (Tidak Ada)</option>
                                         <option value="0.2">0.2 (Tidak Tahu)</option>
                                         <option value="0.4">0.4 (Mungkin)</option>

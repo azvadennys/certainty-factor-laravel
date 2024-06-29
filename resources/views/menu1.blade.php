@@ -3,7 +3,7 @@
 
         <a href="index.html" class="logo d-flex align-items-center me-auto">
             {{-- <img src="assets/img/logo.png" alt=""> --}}
-            <h1 class="sitename">Cerainty Factor</h1>
+            <h1 class="sitename">Certainty Factor</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
