@@ -22,5 +22,4 @@ class LandingPage extends Controller
         ];
         return view('page.index', $data);
     }
-
 }

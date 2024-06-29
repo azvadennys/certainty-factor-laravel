@@ -4,8 +4,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-lg border-0 rounded-lg mb-4">
-                    <div class="card-header text-white text-center" style="background-color: #605ca8">
-                        <h3 class="my-4">Registrasi</h3>
+                    <div class="card-header text-white text-center" style="background-color: #388da8">
+                        <h3 class="my-2 text-white">REGISTRASI</h3>
                     </div>
                     <div class="card-body p-4">
                         <form method="POST" action="{{ route('register') }}">
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="d-flex justify-content-end align-items-center mt-4">
-                                <a class="text-sm text-muted mx-4" href="{{ route('login') }}">Already registered?</a>
+                                <a class="text-sm mx-4" href="{{ route('login') }}">Already registered?</a>
                                 <button type="submit" class="btn btn-primary ml-4">
                                     Register
                                 </button>

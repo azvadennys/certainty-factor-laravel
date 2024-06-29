@@ -3,13 +3,18 @@
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 @endpush
 @section('content')
-    <div class="container mt-5">
-        <h1 class="mb-4">Certainty Factor Calculation</h1>
+    <div class="container">
+        <h2 class="text-center">Konsultasi Rekomendasi Serum Wajah Somethinc</h2>
+        <p class="text-center">Selamat datang di layanan konsultasi rekomendasi serum wajah dari Somethinc. Kami hadir untuk
+            membantu Anda
+            menemukan serum yang tepat sesuai dengan masalah kulit yang Anda alami. Dengan menjawab beberapa pertanyaan
+            sederhana mengenai kondisi kulit Anda, kami dapat memberikan rekomendasi produk yang paling sesuai untuk
+            kebutuhan Anda.</p>
         <form method="post" action="{{ route('calculate.cf') }}" id="cfForm">
             @csrf
             <div class="table-responsive">
-                <table class="table table-bordered " style="border:#605ca8">
-                    <thead style="--bs-table-bg: #605ca8; --bs-table-color:white;" class="text-white">
+                <table class="table table-bordered " style="border:#388da8">
+                    <thead style="--bs-table-bg: #388da8; --bs-table-color:white;" class="text-white">
                         <tr>
                             <th class="text-center">Kode Gejala</th>
                             <th>Nama Gejala</th>

@@ -1,16 +1,17 @@
 @extends('index')
 @section('content')
-    <div class="container my-5">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <div class="card shadow-lg border-0 rounded-lg">
+                <div class="card shadow-lg border-0 rounded-lg mb-4">
                     <div class="card-body p-5">
-                        <h1 class="display-4 text-primary mb-4">Selamat Datang!</h1>
+                        <h1 class="display-4 mb-4" style="color: var(--accent-color);">Selamat Datang!</h1>
                         <h2 class="h4 mb-3 text-dark">Sistem Pakar Pemilihan Serum Wajah Somethinc</h2>
                         <p class="lead text-muted">Temukan rekomendasi serum wajah terbaik untuk kulit Anda dengan teknologi
                             sistem pakar yang canggih. Mulailah dengan memilih gejala yang Anda alami dan kami akan membantu
                             Anda menemukan serum yang paling sesuai.</p>
-                        <a href="{{ route('diagnosa') }}" class="btn btn-primary btn-lg mt-4">Mulai Diagnosa</a>
+                        <a href="{{ route('diagnosa') }}" class="btn btn-primary btn-lg mt-4"
+                            style="background-color: var(--accent-color); border-color : var(--accent-color);;">Mulai Diagnosa</a>
                     </div>
                 </div>
             </div>
@@ -18,7 +19,7 @@
     </div>
     @auth
 
-        @if (auth()->user()->role == 'admin')
+        {{-- @if (auth()->user()->role == 'admin')
             <div class='row'>
                 <div class='col-lg-3 col-xs-6'>
                     <!-- small box -->
@@ -78,7 +79,7 @@
                 <!-- ./col -->
             </div>
             <br>
-        @endif
+        @endif --}}
     @endauth
     <div class="row">
         <div class="col-sm-4 text-center padding wow fadeIn animated" data-wow-duration="1000ms" data-wow-delay="300ms"
