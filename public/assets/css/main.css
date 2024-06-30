@@ -43,7 +43,10 @@
 .modal-backdrop {
     position: static;
 }
-
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
 .light-background {
   --background-color: #f8fbfc;
   --surface-color: #ffffff;

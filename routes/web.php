@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnimasiController;
 use App\Http\Controllers\CFController;
 use App\Http\Controllers\GejalaController;
 use App\Http\Controllers\LandingPage;
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('serums', SerumController::class)->except(['show']);
     Route::resource('gejalas', GejalaController::class)->except(['show']);
     Route::resource('users', UserController::class)->except(['show']);
+    Route::resource('animasi', AnimasiController::class)->except(['show']);
 
     Route::get('/pengetahuan/select2Serum', [PengetahuanController::class, 'select2Serum'])->name('serums.select2');
     Route::get('/pengetahuan/select2Gejala', [PengetahuanController::class, 'select2Gejala'])->name('gejalas.select2');
@@ -51,8 +53,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/diagnosa', [CFController::class, 'calculateCF'])->name('calculate.cf');
 
-    Route::get('/riwayat', [RiwayatController::class,'index'])->name('riwayat.index');
-    Route::get('/riwayat/{id}', [RiwayatController::class,'show'])->name('riwayat.show');
-    Route::delete('/riwayat/{id}', [RiwayatController::class,'destroy'])->name('riwayat.destroy');
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::get('/riwayat/{id}', [RiwayatController::class, 'show'])->name('riwayat.show');
+    Route::delete('/riwayat/{id}', [RiwayatController::class, 'destroy'])->name('riwayat.destroy');
 });
 require __DIR__ . '/auth.php';

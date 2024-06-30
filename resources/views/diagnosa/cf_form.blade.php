@@ -69,9 +69,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="detailModalLabel">Detail Gejala</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
                 </div>
                 <div class="modal-body">
                     <p><strong>Kode Gejala:</strong> <span id="modalKodeGejala"></span></p>
@@ -86,6 +84,27 @@
             </div>
         </div>
     </div>
+    <!-- Modal Peringatan -->
+    <div class="modal fade" id="peringatanModal" tabindex="-1" role="dialog" aria-labelledby="peringatanModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-white" style="background-color: #dc3545;">
+                <h5 class="modal-title" id="peringatanModalLabel">Peringatan!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Silakan pilih setidaknya 3 gejala dengan nilai CF lebih dari 0 untuk melanjutkan.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 @push('custome_js')
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -117,7 +136,7 @@
 
             if (validCount < 3) {
                 event.preventDefault();
-                alert('Silakan pilih setidaknya 3 gejala dengan nilai CF lebih dari 0.');
+                $('#peringatanModal').modal('show');
             }
         });
     </script>

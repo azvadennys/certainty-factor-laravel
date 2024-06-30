@@ -9,44 +9,36 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a class="{{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}"><i
-                            class="fa fa-home"></i>
-                        Beranda</a></li>
-
+                            class="fa fa-home"></i> Beranda</a></li>
 
                 @auth
                     @if (auth()->user()->role == 'admin')
-                        <li><a class="{{ Request::is('users') ? 'active' : '' }}" href="{{ url('users') }}"><i
-                                    class="fa fa-user"></i>
-                                Pengguna</a></li>
-
-                        <li><a class="{{ Request::is('serums') ? 'active' : '' }}" href="{{ url('serums') }}"><i
-                                    class="fa fa-bug"></i>
-                                Serum</a></li>
-
-                        <li><a class="{{ Request::is('gejalas') ? 'active' : '' }}" href="{{ url('gejalas') }}"><i
-                                    class="fa fa-eyedropper"></i>
-                                Gejala</a></li>
-
-                        <li><a class="{{ Request::is('pengetahuan') ? 'active' : '' }}" href="{{ url('pengetahuan') }}"><i
+                        <li><a class="{{ Request::is('users*') ? 'active' : '' }}" href="{{ url('users') }}"><i
+                                    class="fa fa-user"></i> Pengguna</a></li>
+                        <li><a class="{{ Request::is('serums*') ? 'active' : '' }}" href="{{ url('serums') }}"><i
+                                    class="fa fa-bug"></i> Serum</a></li>
+                        <li><a class="{{ Request::is('gejalas*') ? 'active' : '' }}" href="{{ url('gejalas') }}"><i
+                                    class="fa fa-eyedropper"></i> Gejala</a></li>
+                        <li><a class="{{ Request::is('pengetahuan*') ? 'active' : '' }}" href="{{ url('pengetahuan') }}"><i
                                     class="fa fa-flask"></i> Pengetahuan</a></li>
+                        <li><a class="{{ Request::is('animasi*') ? 'active' : '' }}" href="{{ url('animasi') }}"><i
+                                    class="fa fa-eyedropper"></i> Animasi</a></li>
                     @else
-                        <li><a class="{{ Request::is('diagnosa') ? 'active' : '' }}" href="{{ url('diagnosa') }}"><i
+                        <li><a class="{{ Request::is('diagnosa*') ? 'active' : '' }}" href="{{ url('diagnosa') }}"><i
                                     class="fa fa-search-plus"></i> Diagnosa</a></li>
                     @endif
-
                 @endauth
 
                 @guest
-                    <li><a class="{{ Request::is('diagnosa') ? 'active' : '' }}" href="{{ url('diagnosa') }}"><i
+                    <li><a class="{{ Request::is('diagnosa*') ? 'active' : '' }}" href="{{ url('diagnosa') }}"><i
                                 class="fa fa-search-plus"></i> Diagnosa</a></li>
                 @endguest
 
-                <li><a class="{{ Request::is('riwayat') ? 'active' : '' }}" href="{{ url('riwayat') }}"><i
-                            class="fa fa-clock-o"></i>
-                        Riwayat</a></li>
+                <li><a class="{{ Request::is('riwayat*') ? 'active' : '' }}" href="{{ url('riwayat') }}"><i
+                            class="fa fa-clock-o"></i> Riwayat</a></li>
                 @guest
                     <li>
-                        <a class=" {{ Request::is('register') ? 'active' : '' }}" href="{{ route('register') }}">
+                        <a class=" {{ Request::is('register*') ? 'active' : '' }}" href="{{ route('register') }}">
                             <i class="fa fa-sign-up"></i> <span>Registrasi</span>
                         </a>
                     </li>
@@ -55,9 +47,7 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         @guest
-
             <a class="btn-getstarted" href="{{ route('login') }}">Login</a>
-
         @endguest
         @auth
             <a class="btn-getstarted" href="{{ route('logout') }}"
