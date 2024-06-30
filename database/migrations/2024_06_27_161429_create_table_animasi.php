@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('animasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
-            $table->string('video_animasi')->nullable();
-            $table->text('narator')->nullable();
-            $table->text('id_serum')->nullable();
+            $table->string('nama');
+            $table->string('video_animasi');
+            $table->text('narator');
+            $table->text('id_serum');
             $table->timestamps();
         });
     }

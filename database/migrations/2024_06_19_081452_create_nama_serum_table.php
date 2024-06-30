@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('serum', function (Blueprint $table) {
             $table->string('kode_serum',6)->primary();
-            $table->string('nama_serum');
-            $table->text('deskripsi')->nullable();
-            $table->string('foto_serum')->nullable();
+            $table->string('nama_serum',100);
+            $table->text('deskripsi');
+            $table->string('foto_serum',100);
             $table->timestamps();
         });
     }

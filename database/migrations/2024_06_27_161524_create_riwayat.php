@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_users');
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
-            $table->text('cfResults')->nullable();
-            $table->text('serumResults')->nullable();
+            $table->text('cfResults');
+            $table->text('serumResults');
             $table->timestamps();
         });
     }
