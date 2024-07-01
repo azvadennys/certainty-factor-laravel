@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="text-center mb-4">Rekomendasi Serum</h2>
     <div class="row justify-content-center align-items-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <img src="{{ asset($serum->foto_serum) }}" class="card-img-top" alt="{{ $serum->nama_serum }}"
                     style="height: 300px; width: auto; object-fit: contain;">

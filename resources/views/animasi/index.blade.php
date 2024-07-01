@@ -1,11 +1,9 @@
 @extends('index')
 @push('custome_head')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 @endpush
 @section('content')
-    <div class="p-4">
+    <div class="">
         <h1>Daftar Animasi</h1>
         <a href="{{ route('animasi.create') }}" class="btn btn-primary mb-3">Tambah Animasi</a>
         <table class="table mt-3" id="table1">
@@ -66,6 +64,9 @@
 @endsection
 @push('custome_js')
     <!-- Initialize DataTables -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#table1').DataTable();
