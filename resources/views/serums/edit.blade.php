@@ -8,29 +8,29 @@
                 @csrf
                 @method('PUT')
 
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="kode_serum" class="form-label">Kode Serum</label>
                     <input type="text" name="kode_serum" class="form-control" id="kode_serum"
                         value="{{ old('kode_serum', $serum->kode_serum) }}" readonly>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="nama_serum" class="form-label">Nama Serum</label>
                     <input type="text" name="nama_serum" class="form-control" id="nama_serum"
                         value="{{ old('nama_serum', $serum->nama_serum) }}" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
                     <textarea name="deskripsi" class="form-control" id="deskripsi">{{ old('deskripsi', $serum->deskripsi) }}</textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-3">
                     <label for="foto_serum" class="form-label">Foto Serum</label>
-                    <input type="file" name="foto_serum" class="form-control-file" id="foto_serum"
+                    <input type="file" name="foto_serum" class="form-control" id="foto_serum"
                         onchange="previewImage(event)">
                     <h6 class="text-secondary">*Kosongkan jika tidak ingin ganti foto</h6>
                 </div>
 
                 {{-- Tampilkan foto terkini --}}
-                <div class="form-group" id="current_foto_section">
+                <div class="form-group mb-3" id="current_foto_section">
                     <label for="current_foto" class="form-label">Foto Serum Terkini</label><br>
                     @if ($serum->foto_serum)
                         <img id="current_foto" src="{{ asset($serum->foto_serum) }}" alt="Foto Serum" height="200">
@@ -39,7 +39,8 @@
                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block mb-4">Update</button>
+                <button type="submit" class="btn btn-primary ">Update</button>
+                <a href="{{ route('serums.index') }}" class="btn btn-info">Kembali</a>
             </form>
         </div>
     </div>

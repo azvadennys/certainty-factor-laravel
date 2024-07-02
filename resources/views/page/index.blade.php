@@ -10,8 +10,8 @@
                         <p class="lead text-muted">Temukan rekomendasi serum wajah terbaik untuk kulit Anda dengan teknologi
                             sistem pakar yang canggih. Mulailah dengan memilih gejala yang Anda alami dan kami akan membantu
                             Anda menemukan serum yang paling sesuai.</p>
-                        <a href="{{ route('diagnosa') }}" class="btn btn-primary btn-lg mt-4"
-                            style="background-color: var(--accent-color); border-color : var(--accent-color);;">Mulai Diagnosa</a>
+                        <a href="{{ route('diagnosa') }}" class="btn btn-primary btn-lg mt-4">Mulai
+                            Konsultasi</a>
                     </div>
                 </div>
             </div>

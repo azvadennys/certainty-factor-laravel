@@ -72,6 +72,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update</button>
+                <a href="{{ route('animasi.index') }}" class="btn btn-info">Kembali</a>
             </form>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -85,9 +86,17 @@ class UserController extends Controller
             'email' => 'required|unique:users,email,' . $id,
             'role' => 'required|in:user,admin',
         ]);
+        // Buat array data yang akan diperbarui
+        $updateData = $request->only(['name', 'email', 'role']);
 
+        // Periksa apakah password tidak null
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        // Perbarui data pengguna
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user->update($updateData);
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }

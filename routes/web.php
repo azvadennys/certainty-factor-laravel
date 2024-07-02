@@ -44,14 +44,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/pengetahuan/{id}', [PengetahuanController::class, 'update'])->name('pengetahuan.update');
     Route::delete('/pengetahuan/{id}', [PengetahuanController::class, 'destroy'])->name('pengetahuan.destroy');
 });
-Route::get('/diagnosa', [CFController::class, 'showForm'])->name('diagnosa');
+Route::get('/konsultasi', [CFController::class, 'showForm'])->name('diagnosa');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::post('/diagnosa', [CFController::class, 'calculateCF'])->name('calculate.cf');
+    Route::post('/konsultasi', [CFController::class, 'calculateCF'])->name('calculate.cf');
 
     Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat.index');
     Route::get('/riwayat/{id}', [RiwayatController::class, 'show'])->name('riwayat.show');

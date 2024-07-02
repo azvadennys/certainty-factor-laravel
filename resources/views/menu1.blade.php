@@ -10,6 +10,8 @@
             <ul>
                 <li><a class="{{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}"><i
                             class="fa fa-home"></i> Beranda</a></li>
+                <li><a class="{{ Request::is('konsultasi*') ? 'active' : '' }}" href="{{ url('konsultasi') }}"><i
+                            class="fa fa-search-plus"></i> Konsultasi</a></li>
 
                 @auth
                     @if (auth()->user()->role == 'admin')
@@ -19,20 +21,12 @@
                                     class="fa fa-bug"></i> Serum</a></li>
                         <li><a class="{{ Request::is('gejalas*') ? 'active' : '' }}" href="{{ url('gejalas') }}"><i
                                     class="fa fa-eyedropper"></i> Gejala</a></li>
-                        <li><a class="{{ Request::is('pengetahuan*') ? 'active' : '' }}" href="{{ url('pengetahuan') }}"><i
-                                    class="fa fa-flask"></i> Pengetahuan</a></li>
+                        <li><a class="{{ Request::is('pengetahuan*') ? 'active' : '' }}"
+                                href="{{ url('pengetahuan') }}"><i class="fa fa-flask"></i> Pengetahuan</a></li>
                         <li><a class="{{ Request::is('animasi*') ? 'active' : '' }}" href="{{ url('animasi') }}"><i
                                     class="fa fa-eyedropper"></i> Animasi</a></li>
-                    @else
-                        <li><a class="{{ Request::is('diagnosa*') ? 'active' : '' }}" href="{{ url('diagnosa') }}"><i
-                                    class="fa fa-search-plus"></i> Diagnosa</a></li>
                     @endif
                 @endauth
-
-                @guest
-                    <li><a class="{{ Request::is('diagnosa*') ? 'active' : '' }}" href="{{ url('diagnosa') }}"><i
-                                class="fa fa-search-plus"></i> Diagnosa</a></li>
-                @endguest
 
                 <li><a class="{{ Request::is('riwayat*') ? 'active' : '' }}" href="{{ url('riwayat') }}"><i
                             class="fa fa-clock-o"></i> Riwayat</a></li>

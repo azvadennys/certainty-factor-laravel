@@ -46,6 +46,12 @@
 .btn-primary {
     background-color: var(--accent-color);
     color: white;
+    border-color : var(--accent-color);
+}
+.btn-primary:hover,
+.btn-primary:focus:hover {
+  color: var(--contrast-color);
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
 }
 .light-background {
   --background-color: #f8fbfc;
