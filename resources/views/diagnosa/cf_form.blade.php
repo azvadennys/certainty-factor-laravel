@@ -18,7 +18,7 @@
                         <tr>
                             <th class="text-center">Kode Gejala</th>
                             <th>Nama Gejala</th>
-                            <th>Nilai CF</th>
+                            <th>Kondisi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -30,12 +30,12 @@
                                 <td>
                                     <select id="gejala_{{ $item['kode_gejala'] }}" name="gejala[{{ $item['kode_gejala'] }}]"
                                         class="form-control cf-select">
-                                        <option value="0">0 (Tidak Ada)</option>
-                                        <option value="0.2">0.2 (Tidak Tahu)</option>
-                                        <option value="0.4">0.4 (Mungkin)</option>
-                                        <option value="0.6">0.6 (Kemungkinan Besar)</option>
-                                        <option value="0.8">0.8 (Hampir Pasti)</option>
-                                        <option value="1">1 (Pasti)</option>
+                                        <option value="0">Tidak Ada</option>
+                                        <option value="0.2">Tidak Tahu</option>
+                                        <option value="0.4">Mungkin</option>
+                                        <option value="0.6">Kemungkinan Besar</option>
+                                        <option value="0.8">Hampir Pasti</option>
+                                        <option value="1">Pasti</option>
                                     </select>
                                 </td>
                                 <td class="text-center">
@@ -91,13 +91,11 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: #dc3545;">
-                    <h5 class="modal-title" id="peringatanModalLabel">Peringatan!</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title text-white" id="peringatanModalLabel"><b>Peringatan!</b></h5>
+
                 </div>
                 <div class="modal-body">
-                    <p>Silakan pilih setidaknya 3 gejala dengan nilai CF lebih dari 0 untuk melanjutkan.</p>
+                    <p>Silakan pilih setidaknya 3 gejala dengan kondisi selain <b>Tidak Ada</b> untuk melanjutkan.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
