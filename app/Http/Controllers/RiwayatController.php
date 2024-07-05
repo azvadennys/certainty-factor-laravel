@@ -34,8 +34,9 @@ class RiwayatController extends Controller
         $animasi = Animasi::whereJsonContains('id_serum', $serumTertinggi)->get();
         $serum = Serum::where('kode_serum', $serumTertinggi)->first();
         $serumAll = Serum::all();
+        $url_back = url()->previous();
 
-        return view('riwayat.show', compact('riwayats', 'cfResults', 'serumResults', 'animasi', 'serum', 'serumAll'));
+        return view('riwayat.show', compact('riwayats', 'cfResults', 'serumResults', 'animasi', 'serum', 'serumAll', 'url_back'));
     }
 
     public function destroy($id)

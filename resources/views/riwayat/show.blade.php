@@ -67,7 +67,7 @@
             @endforeach
         </tbody>
     </table>
-    <a href="{{ route('riwayat.index') }}" class="btn btn-info">Kembali</a>
+    <a href="{{ $url_back }}" class="btn btn-info">Kembali</a>
     @foreach ($serumResults as $serum)
         @php
             $serumDetail = $serumAll->firstWhere('kode_serum', $serum->kode_serum);
