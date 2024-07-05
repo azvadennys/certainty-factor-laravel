@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="nilai_cf" class="form-label">Nilai CF</label>
-                    <input type="text" name="nilai_cf" class="form-control @error('nilai_cf') is-invalid @enderror" id="nilai_cf" value="{{ old('nilai_cf', $pengetahuan->nilai_cf) }}" required>
+                    <input type="number" step="0.01" name="nilai_cf" class="form-control @error('nilai_cf') is-invalid @enderror" id="nilai_cf" value="{{ old('nilai_cf', $pengetahuan->nilai_cf) }}" required>
                     @error('nilai_cf')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
