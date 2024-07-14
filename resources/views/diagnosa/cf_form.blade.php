@@ -68,8 +68,8 @@
         aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailModalLabel">Detail Gejala</h5>
+                <div class="modal-header" style="background-color: var(--accent-color);">
+                    <h5 class="modal-title text-white" id="detailModalLabel">Detail Gejala</h5>
 
                 </div>
                 <div class="modal-body">
@@ -94,11 +94,11 @@
                     <h5 class="modal-title text-white" id="peringatanModalLabel"><b>Peringatan!</b></h5>
 
                 </div>
-                <div class="modal-body">
-                    <p>Silakan pilih setidaknya 3 gejala dengan kondisi selain <b>Tidak Ada</b> untuk melanjutkan.</p>
+                <div class="modal-body" id="peringatanModalBody">
+                    <!-- Pesan akan diisi oleh JavaScript -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="closePeringatanModal">OK</button>
                 </div>
             </div>
         </div>
@@ -131,11 +131,20 @@
                     validCount++;
                 }
             });
-
+            var totalGejala = cfSelects.length;
             if (validCount < 3) {
                 event.preventDefault();
+                document.getElementById('peringatanModalBody').innerHTML = '<p>Silakan pilih setidaknya 3 gejala dengan kondisi selain <b>Tidak Ada</b> untuk melanjutkan.</p>';
+                $('#peringatanModal').modal('show');
+            } else if (validCount === totalGejala) {
+                event.preventDefault();
+                document.getElementById('peringatanModalBody').innerHTML = '<p>Pemilihan gejala <b>Tidak Valid</b>. Silakan pilih sesuai dengan keadaan untuk melanjutkan.</p>';
                 $('#peringatanModal').modal('show');
             }
+        });
+        // Close modal on OK button click
+        document.getElementById('closePeringatanModal').addEventListener('click', function() {
+            $('#peringatanModal').modal('hide');
         });
     </script>
 @endpush
