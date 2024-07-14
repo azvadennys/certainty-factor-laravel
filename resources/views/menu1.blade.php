@@ -37,6 +37,11 @@
                         </a>
                     </li>
                 @endguest
+                @auth
+
+                    <li><a class="{{ Request::is('profile*') ? 'active' : '' }}" href="{{ url('profile') }}"><i
+                                class="fa fa-eyedropper"></i>Profile</a></li>
+                @endauth
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -44,6 +49,7 @@
             <a class="btn-getstarted" href="{{ route('login') }}">Login</a>
         @endguest
         @auth
+
             <a class="btn-getstarted" href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-sign-out"></i> <span>Logout</span>
