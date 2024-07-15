@@ -50,8 +50,7 @@
         @endguest
         @auth
 
-            <a class="btn-getstarted" href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="btn-getstarted" href="#" id="logout-btn">
                 <i class="fa fa-sign-out"></i> <span>Logout</span>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -60,3 +59,21 @@
         @endauth
     </div>
 </header>
+<script>
+    document.getElementById('logout-btn').addEventListener('click', function(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Apakah Kamu Yakin?',
+            text: "Kamu akan Keluar!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Keluar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('logout-form').submit();
+            }
+        })
+    });
+</script>

@@ -52,7 +52,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="submit" class="btn btn-primary">Lanjutkan Konsultasi</button>
+            <button type="button" class="btn btn-primary" id="submitBtn">Lanjutkan Konsultasi</button>
             <a href="{{ route('home') }}" class="btn btn-info">Kembali</a>
         </form>
     </div>
@@ -98,7 +98,8 @@
                     <!-- Pesan akan diisi oleh JavaScript -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="closePeringatanModal">OK</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        id="closePeringatanModal">OK</button>
                 </div>
             </div>
         </div>
@@ -122,7 +123,7 @@
         });
 
         // Form validation
-        document.getElementById('cfForm').addEventListener('submit', function(event) {
+        document.getElementById('submitBtn').addEventListener('click', function() {
             var cfSelects = document.querySelectorAll('.cf-select');
             var validCount = 0;
 
@@ -133,13 +134,39 @@
             });
             var totalGejala = cfSelects.length;
             if (validCount < 3) {
-                event.preventDefault();
-                document.getElementById('peringatanModalBody').innerHTML = '<p>Silakan pilih setidaknya 3 gejala dengan kondisi selain <b>Tidak Ada</b> untuk melanjutkan.</p>';
-                $('#peringatanModal').modal('show');
+                Swal.fire({
+                    title: 'Error',
+                    text: "Silakan pilih setidaknya 3 gejala dengan kondisi selain Tidak Ada untuk melanjutkan!",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                })
+                // document.getElementById('peringatanModalBody').innerHTML = '<p>Silakan pilih setidaknya 3 gejala dengan kondisi selain <b>Tidak Ada</b> untuk melanjutkan.</p>';
+                // $('#peringatanModal').modal('show');
             } else if (validCount === totalGejala) {
-                event.preventDefault();
-                document.getElementById('peringatanModalBody').innerHTML = '<p>Pemilihan gejala <b>Tidak Valid</b>. Silakan pilih sesuai dengan keadaan untuk melanjutkan.</p>';
-                $('#peringatanModal').modal('show');
+                Swal.fire({
+                    title: 'Error',
+                    text: "Pemilihan gejala Tidak Valid. Silakan pilih sesuai dengan keadaan untuk melanjutkan!",
+                    icon: 'warning',
+                    showCancelButton: false,
+                    confirmButtonColor: '#3085d6',
+                })
+                // document.getElementById('peringatanModalBody').innerHTML = '<p>Pemilihan gejala <b>Tidak Valid</b>. Silakan pilih sesuai dengan keadaan untuk melanjutkan.</p>';
+                // $('#peringatanModal').modal('show');
+            } else {
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda akan melanjutkan konsultasi!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, lanjutkan!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('cfForm').submit();
+                    }
+                });
             }
         });
         // Close modal on OK button click
